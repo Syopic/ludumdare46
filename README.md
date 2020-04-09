@@ -1,2 +1,2 @@
 # ludumdare46
-Ludum Dare 46 Project preproduction
+Ludum Dare 46 Starter Kit
