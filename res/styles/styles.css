@@ -1,28 +1,29 @@
 menubutton {
-	padding : 16;
-	width: 300;
-	background : #517969;
+	padding : 2;
+	padding-bottom : 3;
+	width: 100;
+	background : #000000;
 	content-halign : middle;
-	margin : 10;
+	margin : 0;
 }
 
 
 menubutton text {
-	font : url("fonts/cyrbit.fnt");
-	scale: 3;
-	text-color : #0d1c1b;
+	font : url("font/gb.fnt");
+	scale: 1;
+	text-color : #1f1f1f;
 	text-align : middle;
 }
 
 menubutton:hover {
-	background: #183030;
+	background: #000000;
 	
 }
 
 menubutton text:hover {
-	text-color : #517969;
+	text-color : #4d533c;
 }
 
 menubutton:active {
-	background: #0d1c1b;
+	text-color : #c4cfa1;
 }

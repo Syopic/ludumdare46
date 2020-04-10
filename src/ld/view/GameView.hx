@@ -13,8 +13,6 @@ class GameView extends Object {
     }
 
     public function onResize() {
-		if (titleScreen != null)
-			titleScreen.onResize();
 	}
 
     public function update(dt:Float) {

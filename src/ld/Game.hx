@@ -33,11 +33,10 @@ class Game extends hxd.App {
 		if (view != null) {
 			var scaleCoef:Float = Math.min(hxd.Window.getInstance().width / (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR), hxd.Window.getInstance().height / (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR));
 			view.setScale(scaleCoef * Globals.SCALE_FACTOR) ;
-			view.x = (hxd.Window.getInstance().width )  / 2 - (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR / 2) * scaleCoef;
-			view.y = (hxd.Window.getInstance().height )  / 2 - (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR / 2) * scaleCoef;
-		}
-		if (view != null)
+			view.x = hxd.Window.getInstance().width / 2 - (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR / 2) * scaleCoef;
+			view.y = hxd.Window.getInstance().height / 2 - (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR / 2) * scaleCoef;
 			view.onResize();
+		}
 	}
 
 	override function update(dt:Float) {
