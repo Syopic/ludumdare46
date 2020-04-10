@@ -1,0 +1,28 @@
+menubutton {
+	padding : 16;
+	width: 300;
+	background : #517969;
+	content-halign : middle;
+	margin : 10;
+}
+
+
+menubutton text {
+	font : url("fonts/cyrbit.fnt");
+	scale: 3;
+	text-color : #0d1c1b;
+	text-align : middle;
+}
+
+menubutton:hover {
+	background: #183030;
+	
+}
+
+menubutton text:hover {
+	text-color : #517969;
+}
+
+menubutton:active {
+	background: #0d1c1b;
+}

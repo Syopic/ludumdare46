@@ -1,0 +1,8 @@
+-cp src
+-lib heaps
+-lib domkit
+-lib hlsdl
+-hl out/hlboot.dat
+-main ld.Game
+-D windowSize=640x576
+-D windowTitle=Ludum Dare 46

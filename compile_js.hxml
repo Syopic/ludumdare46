@@ -1,0 +1,7 @@
+-cp src
+-lib heaps
+-lib domkit
+-js out/ld.js
+-main ld.Game
+-D windowSize=640x576
+-D windowTitle=Ludum Dare 46

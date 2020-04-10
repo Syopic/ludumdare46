@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "HeapsJS",
+			"type": "hxml",
+			"file": "compile_js.hxml"
+		},
+		{
+			"label": "HeapsHL",
+			"type": "hxml",
+			"file": "compile_hl.hxml"
+		}
+	]
+}
