@@ -1,5 +1,7 @@
 package ld.view.ui;
 
+import h2d.filter.Glow;
+import ld.data.Globals;
 import hxd.Key;
 import ld.view.ui.components.MenuviewComp;
 import h2d.Bitmap;
@@ -9,6 +11,7 @@ class TitleScreen extends h2d.Object {
 	var style:h2d.domkit.Style = null;
 	var panelFlow = null;
 	var bgImage:Bitmap;
+
 	public var menuView:MenuviewComp;
 
 	public function new(parent:Object) {
@@ -21,7 +24,7 @@ class TitleScreen extends h2d.Object {
 		panelFlow.padding = 5;
 
 		panelFlow.verticalSpacing = 5;
-	
+
 		panelFlow.paddingTop = 80;
 		panelFlow.paddingLeft = 32;
 
@@ -30,6 +33,7 @@ class TitleScreen extends h2d.Object {
 		menuView = new MenuviewComp(panelFlow);
 		style.addObject(menuView);
 		hxd.Window.getInstance().addEventTarget(onEvent);
+
 	}
 
 	function onEvent(event:hxd.Event) {
@@ -44,16 +48,14 @@ class TitleScreen extends h2d.Object {
 					{
 						menuView.changeIndex(-1);
 					}
-				case Key.LEFT:
-					{}
-				case Key.RIGHT:
-					{}
 				case Key.ENTER:
 					{
 						menuView.doAction();
 					}
 				case Key.ESCAPE:
-					{}
+					{
+						// Sys.exit(1);
+					}
 			}
 		}
 	}

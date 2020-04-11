@@ -2,8 +2,8 @@ package ld.data;
 
 class Globals {
     public static var SCALE_FACTOR:Float = 4;
-    public static var STAGE_WIDTH:Float = 160;
-    public static var STAGE_HEIGHT:Float = 144;
+    public static var STAGE_WIDTH:Int = 160;
+    public static var STAGE_HEIGHT:Int = 144;
 
     public static var COLOR_SET = {
 		Transparent: 16777215,
@@ -21,6 +21,7 @@ class Globals {
 
 	public static var SFX_SET = {
 		UIHover: "uiHov",
+		Transition: "transition",
 		Test1: "test",
 		Test2: "t2"
 	}

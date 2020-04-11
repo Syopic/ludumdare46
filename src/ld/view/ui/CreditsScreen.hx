@@ -48,6 +48,11 @@ class CreditsScreen extends h2d.Object {
 		}
 	}
 
+	public function update(dt:Float) {
+		if (style != null)
+			style.sync();
+	}
+
 	public function dispose() {
 		hxd.Window.getInstance().removeEventTarget(onEvent);
 	}

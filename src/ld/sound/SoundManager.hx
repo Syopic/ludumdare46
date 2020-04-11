@@ -18,7 +18,8 @@ class SoundManager {
 			// music
 			sounds[Globals.MUSIC_SET.TitleTheme] = hxd.Res.sound.music.track1;
 			// sfx
-			sounds[Globals.SFX_SET.UIHover] = hxd.Res.sound.sfx.uiHov;
+			sounds[Globals.SFX_SET.UIHover] = hxd.Res.sound.sfx.uiH2;
+			sounds[Globals.SFX_SET.Transition] = hxd.Res.sound.sfx.transition;
 			sounds[Globals.SFX_SET.Test1] = hxd.Res.sound.sfx.test;
 			sounds[Globals.SFX_SET.Test2] = hxd.Res.sound.sfx.t2;
 		}

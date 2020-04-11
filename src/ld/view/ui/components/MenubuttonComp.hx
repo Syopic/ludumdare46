@@ -1,5 +1,6 @@
 package ld.view.ui.components;
 
+import h2d.filter.Glow;
 import ld.data.Globals;
 
 @:uiComp("menubutton")
@@ -24,6 +25,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 		super(parent);
 		this.action = action;
 		initComponent();
+		// labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 
 		enableInteractive = true;
 		interactive.cursor = Button;
@@ -31,9 +33,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 		interactive.onOver = function(_) {
 			if (clearAction != null)
 			clearAction();
-			Game.soundManager.playSound(Globals.SFX_SET.Test1, 1);
-			dom.hover = true;
-			labelText.dom.hover = true;
+			setFocus(true);
 		};
 		interactive.onPush = function(_) {
 			dom.active = true;
@@ -42,19 +42,21 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 			dom.active = false;
 		};
 		interactive.onOut = function(_) {
-			dom.hover = false;
-			labelText.dom.hover = false;
+			setFocus(false);
 		};
 	}
 
 	public function setFocus(isFocused) {
 		if (isFocused) {
-			Game.soundManager.playSound(Globals.SFX_SET.Test1, 1);
+			Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.3);
 			dom.hover = true;
 			labelText.dom.hover = true;
+			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		} else {
 			dom.hover = false;
 			labelText.dom.hover = false;
+			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 0, 0.1);
 		}
 	}
+	
 }

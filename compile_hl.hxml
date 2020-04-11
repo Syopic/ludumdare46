@@ -2,6 +2,8 @@
 -lib heaps
 -lib domkit
 -lib hlsdl
+-lib tweenx
+-lib tweenxcore
 -hl out/hlboot.dat
 -main ld.Game
 -D windowSize=640x576
