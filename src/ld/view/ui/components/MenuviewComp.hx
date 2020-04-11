@@ -6,7 +6,7 @@ import h2d.Flow;
 @:uiComp("menuview")
 class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 
-	private var currentIndex:Int = 0;
+	public var currentIndex:Int = 0;
 
     public function new(?parent) {
         super(parent);

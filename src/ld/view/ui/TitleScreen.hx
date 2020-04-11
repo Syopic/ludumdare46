@@ -9,7 +9,7 @@ class TitleScreen extends h2d.Object {
 	var style:h2d.domkit.Style = null;
 	var panelFlow = null;
 	var bgImage:Bitmap;
-	var menuView:MenuviewComp;
+	public var menuView:MenuviewComp;
 
 	public function new(parent:Object) {
 		super(parent);

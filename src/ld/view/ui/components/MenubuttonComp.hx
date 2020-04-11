@@ -29,6 +29,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 		interactive.cursor = Button;
 		interactive.onClick = function(_) action();
 		interactive.onOver = function(_) {
+			if (clearAction != null)
 			clearAction();
 			Game.soundManager.playSound(Globals.SFX_SET.Test1, 1);
 			dom.hover = true;

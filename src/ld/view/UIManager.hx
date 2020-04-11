@@ -18,8 +18,9 @@ class UIManager extends Object {
     public function changeScreen(screenName:String) {
         switch (screenName) {
             case Globals.TITLE_SCREEN: {
-                if (creditsScreen != null) {creditsScreen.dispose(); creditsScreen.remove();}
                 titleScreen = new TitleScreen(this);
+                // titleScreen.menuView.changeIndex = 1;
+                if (creditsScreen != null) {creditsScreen.dispose(); creditsScreen.remove(); }
             }
             case Globals.CREDITS_SCREEN: {
                 if (titleScreen != null) {titleScreen.dispose(); titleScreen.remove();}
