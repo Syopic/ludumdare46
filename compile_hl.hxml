@@ -6,3 +6,4 @@
 -main ld.Game
 -D windowSize=640x576
 -D windowTitle=Ludum Dare 46
+-D heaps_enable_hl_mp3=true

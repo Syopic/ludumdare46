@@ -3,6 +3,7 @@ package ld;
 import ld.data.Globals;
 import ld.data.GameConfig;
 import ld.view.GameView;
+import ld.sound.SoundManager;
 
 class Game extends hxd.App {
 
@@ -10,7 +11,7 @@ class Game extends hxd.App {
 	// public static var controller:GameController;
 	public static var view:GameView;
 	// public static var uiManager:UIManager;
-	// public static var soundManager:SoundManager;
+	public static var soundManager:SoundManager;
 
 	static function main() {
 		hxd.Res.initEmbed();
@@ -18,6 +19,8 @@ class Game extends hxd.App {
 	}
 
 	override function init() {
+		soundManager = new SoundManager();
+		soundManager.playSound("track1");
 		view = new GameView(s2d);
 		onResize();
 	}

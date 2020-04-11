@@ -1,6 +1,6 @@
 package ld.view.ui.components;
 
-import domkit.Object;
+import h2d.Flow;
 
 @:uiComp("menuview")
 class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {

@@ -29,6 +29,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 			labelText.dom.hover = true;
 		};
 		interactive.onPush = function(_) {
+			Game.soundManager.playSound("t2", 0.5, true);
 			dom.active = true;
 		};
 		interactive.onRelease = function(_) {
