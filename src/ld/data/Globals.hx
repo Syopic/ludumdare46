@@ -14,4 +14,17 @@ class Globals {
 		TimberGreen: 0xff4d533c,
 		Aztec: 0xff1f1f1f
 	}
+
+	public static var MUSIC_SET = {
+		TitleTheme: "track1"
+	}
+
+	public static var SFX_SET = {
+		UIHover: "uiHov",
+		Test1: "test",
+		Test2: "t2"
+	}
+
+	public static inline var TITLE_SCREEN = "titleScreen";
+	public static inline var CREDITS_SCREEN = "creditsScreen";
 }

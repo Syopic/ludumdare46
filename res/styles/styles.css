@@ -11,7 +11,7 @@ menubutton {
 menubutton text {
 	font : url("font/gb.fnt");
 	scale: 1;
-	text-color : #1f1f1f;
+	text-color : #4d533c;
 	text-align : middle;
 }
 
@@ -21,7 +21,7 @@ menubutton:hover {
 }
 
 menubutton text:hover {
-	text-color : #4d533c;
+	text-color : #8b956d;
 }
 
 menubutton:active {
