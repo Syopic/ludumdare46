@@ -54,7 +54,4 @@ class SoundManager {
 			c.mute = isMute;
 		}
 	}
-
-	public function update(dt:Float) {
-	}
 }
