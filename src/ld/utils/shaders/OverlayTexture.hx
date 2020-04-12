@@ -2,6 +2,7 @@ package ld.utils.shaders;
 
 // by Sébastien Bénard
 // https://github.com/deepnight/deepnightLibs/blob/master/src/dn/heaps/filter/OverlayTexture.hx
+
 enum BevelType {
 	Classic;
 	Soft;

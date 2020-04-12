@@ -2,7 +2,6 @@ package ld;
 
 import ld.utils.shaders.OverlayTexture;
 import ld.data.Globals;
-import ld.data.GameConfig;
 import ld.controller.GameController;
 import ld.view.UIManager;
 import ld.view.GameView;
@@ -26,10 +25,10 @@ class Game extends hxd.App {
 		controller = new GameController();
 		view = new GameView(s2d);
 		uiManager = new UIManager(s2d);
-		onResize();
 		var ot = new OverlayTexture(4);
 		ot.alpha = 0.12;
 		s2d.filter = ot;
+		onResize();
 	}
 
 	public function restart() {
