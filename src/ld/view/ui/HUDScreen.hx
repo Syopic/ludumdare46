@@ -24,7 +24,7 @@ class HUDScreen extends h2d.Object {
 
 		panelFlow.verticalSpacing = 5;
 
-		panelFlow.paddingTop = 55;
+		panelFlow.paddingTop = 50;
 		panelFlow.paddingLeft = 32;
 
 		menuView = new GamemenuviewComp(panelFlow);
@@ -34,31 +34,40 @@ class HUDScreen extends h2d.Object {
 		hxd.Window.getInstance().addEventTarget(onEvent);
 	}
 
-	
+	public function pause() {
+		panelFlow.visible = !panelFlow.visible;
+		Game.controller.pause(panelFlow.visible);
+		if (!panelFlow.visible) {
+			menuView.clearAll();
+			menuView.currentIndex = 0;
+			menuView.changeIndex(0);
+		} else
+			menuView.continueButton.setFocus(true);
+	}
+
 	function onEvent(event:hxd.Event) {
 		// keyboard
 		if (event.kind == EKeyDown) {
-			menuView.restartButton.setFocus(true);
 			switch (event.keyCode) {
 				case Key.DOWN:
 					{
-						menuView.changeIndex(1);
+						if (panelFlow.visible)
+							menuView.changeIndex(1);
 					}
 				case Key.UP:
 					{
-						menuView.changeIndex(-1);
+						if (panelFlow.visible)
+							menuView.changeIndex(-1);
 					}
 				case Key.ENTER:
-					menuView.doAction();
-				case Key.ESCAPE: {
-
-					panelFlow.visible = !panelFlow.visible;
-					if (!panelFlow.visible) {
-						menuView.clearAll();
-						menuView.currentIndex = 0;
-						menuView.changeIndex(0);
+					{
+						if (panelFlow.visible)
+							menuView.doAction();
 					}
-				}
+				case Key.ESCAPE:
+					{
+						pause();
+					}
 			}
 		}
 	}

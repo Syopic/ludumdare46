@@ -15,7 +15,7 @@ class TransitionView extends Object {
 	private var tintDown:Bitmap;
 	private var isShow:Bool = true;
 	private var onComplete:Dynamic;
-    private var frameCount = 16;
+    private var frameCount = 10;
 
 	public function new(parent:Object) {
 		super(parent);
@@ -30,7 +30,7 @@ class TransitionView extends Object {
 	}
 
 	public function update(dt:Float) {
-		var rate = frameCount / 16;
+		var rate = frameCount / 10;
 
 		if (rate <= 1) {
 			tintUp.y = rate.linear().lerp(-Globals.STAGE_HEIGHT / 2, 0);

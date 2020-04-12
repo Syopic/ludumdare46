@@ -12,13 +12,13 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
         super(parent);
 		initComponent();
 		haxe.Timer.delay(function() {
-			changeIndex(0);
+			startButton.setFocus(true);
 		}, 100);
     }
 
     static var SRC = <menuview>
 		<flow vertical id="menu"> 
-			<menubutton("START GAME", onStart, clearAll) />
+			<menubutton("START GAME", onStart, clearAll) public id="startButton" />
 			<menubutton("CREDITS", onCredits, clearAll) />
 			<menubutton("GAME OVER", onGameOver, clearAll) />
 			<menubutton("EXIT", onExit, clearAll) />
@@ -26,26 +26,26 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 	</menuview>;
 
 	public dynamic function onStart() {
-		trace("onStart");
+		trace("onStart" + currentIndex);
 		clearAll();
 		Game.uiManager.changeScreen(Globals.HUD_SCREEN);
 	}
 
 	public dynamic function onCredits() {
-		trace("onCredits");
+		trace("onCredits" + currentIndex);
 		clearAll();
 		Game.uiManager.changeScreen(Globals.CREDITS_SCREEN);
 	}
 
 	public dynamic function onGameOver() {
-		trace("onGameOver");
+		trace("onGameOver" + currentIndex);
 		clearAll();
 		Game.uiManager.changeScreen(Globals.GAMEOVER_SCREEN);
 	}
 
 	public dynamic function onExit() {
 		clearAll();
-		trace("onExit");
+		trace("onExit" + currentIndex);
 	}
 
 	public dynamic function doAction() {
@@ -64,7 +64,7 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 	}
 
 	public function clearAll() {
-		currentIndex = menu.children.length;
+		// currentIndex = menu.children.length;
 		for (i in 0 ... menu.children.length) {
 			cast(menu.children[i], MenubuttonComp).setFocus(false);
 		}

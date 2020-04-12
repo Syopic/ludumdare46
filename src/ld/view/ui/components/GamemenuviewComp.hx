@@ -18,10 +18,17 @@ class GamemenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 
     static var SRC = <gamemenuview>
 		<flow vertical id="menu"> 
+			<menubutton("CONTINUE", onContinue, clearAll) public id="continueButton" />
 			<menubutton("RESTART", onRestart, clearAll) public id="restartButton" />
 			<menubutton("MAIN MENU", onMainmenu, clearAll) public id="mainMenuButton" />
 		</flow>
 	</gamemenuview>;
+
+	public dynamic function onContinue() {
+		trace("onContinue");
+		clearAll();
+		Game.uiManager.hudScreen.pause();
+	}
 
 	public dynamic function onRestart() {
 		trace("onRestart");

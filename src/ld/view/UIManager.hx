@@ -17,7 +17,9 @@ class UIManager extends Object {
 	private var titleScreen:TitleScreen;
 	private var creditsScreen:CreditsScreen;
 	private var gameOverScreen:GameOverScreen;
-	private var hudScreen:HUDScreen;
+
+	public var hudScreen:HUDScreen;
+
 	private var screenContainer:Object;
 
 	public function new(parent:Object) {
@@ -25,12 +27,15 @@ class UIManager extends Object {
 		style.load(hxd.Res.styles.styles);
 		screenContainer = new Object(this);
 		transitionView = new TransitionView(this);
-		changeScreen(Globals.TITLE_SCREEN, true);
-    }
-    
+		if (Globals.skipMainMenu)
+			changeScreen(Globals.HUD_SCREEN, true);
+		else
+			changeScreen(Globals.TITLE_SCREEN, true);
+	}
 
 	public function changeScreen(screenName:String, isFirst:Bool = false) {
-		if (!isFirst) transitionView.show();
+		if (!isFirst)
+			transitionView.show();
 		Game.soundManager.playSound(Globals.SFX_SET.Transition, 0.5);
 		haxe.Timer.delay(function() {
 			if (creditsScreen != null) {
@@ -66,9 +71,10 @@ class UIManager extends Object {
 				case Globals.HUD_SCREEN:
 					{
 						hudScreen = new HUDScreen(screenContainer);
+						Game.controller.startGame();
 					}
 			}
-		}, 300);
+		}, 200);
 	}
 
 	public function update(dt:Float) {
