@@ -1,5 +1,9 @@
 package ld.view.ui;
 
+import h2d.filter.Glow;
+import h2d.Text;
+import hxd.Res;
+import h3d.Vector;
 import ld.view.ui.components.GamemenuviewComp;
 import ld.data.Globals;
 import hxd.Key;
@@ -12,6 +16,7 @@ class HUDScreen extends h2d.Object {
 	var bgImage:Bitmap;
 	var menuView:GamemenuviewComp;
 	var panelFlow:h2d.Flow;
+	var scoreTF:Text;
 
 	public function new(parent:Object) {
 		super(parent);
@@ -32,6 +37,15 @@ class HUDScreen extends h2d.Object {
 		panelFlow.visible = false;
 
 		hxd.Window.getInstance().addEventTarget(onEvent);
+
+		scoreTF = new Text(Res.font.gb.toFont());
+		
+		scoreTF.color = new Vector(139 / 255, 149 / 255, 109 / 255, 1);
+		scoreTF.textAlign = Left;
+		scoreTF.setPosition(20, 9);
+		this.addChild(scoreTF);
+		this.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
+		
 	}
 
 	public function pause() {
@@ -43,6 +57,10 @@ class HUDScreen extends h2d.Object {
 			menuView.changeIndex(0);
 		} else
 			menuView.continueButton.setFocus(true);
+	}
+
+	public function setScore(value:Int) {
+		scoreTF.text = value + "";
 	}
 
 	function onEvent(event:hxd.Event) {

@@ -29,10 +29,13 @@ class GameView extends Object {
 
 	public function update(dt:Float) {
 		if (unit != null) {
-			// unit.position.x += 1;
+			unit.position.x += 1;
 			unit.update(dt);
+			Game.uiManager.hudScreen.setScore(Std.int(unit.position.x));
 			ps.addParticle(ParticleHelper.fontan(Std.int(unit.position.x + 2), Std.int(unit.position.y), Globals.COLOR_SET.Como));
-			if (unit.position.x > Globals.STAGE_WIDTH) unit.position.x = 0;
+			if (unit.position.x > Globals.STAGE_WIDTH) {
+				unit.position.x = 0;
+			} 
 		}
 		if (ps != null) {
 			ps.update(dt);
