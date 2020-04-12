@@ -8,18 +8,16 @@ class GameObject extends h2d.Object {
 	public var guid:String;
 	public var position:Point = new Point();
 
-	public function new(parent:Object) {
-		guid = Utils.uid();
+	public function new(?parent:Object) {
 		super(parent);
-	}
-
-	public function updatePosition(p:Point) {
-		position = p.clone();
+		guid = Utils.uid();
 	}
 
 	public function applyPixelPerfect() {
 		setPosition(Math.round(position.x), Math.round(position.y));
 	}
 
-	public function update(dt:Float) {}
+	public function update(dt:Float) {
+		applyPixelPerfect();
+	}
 }
