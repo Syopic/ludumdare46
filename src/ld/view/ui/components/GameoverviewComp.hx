@@ -3,8 +3,8 @@ package ld.view.ui.components;
 import ld.data.Globals;
 import h2d.Flow;
 
-@:uiComp("creditsview")
-class CreditsviewComp extends h2d.Flow implements h2d.domkit.Object {
+@:uiComp("gameoverview")
+class GameoverviewComp extends h2d.Flow implements h2d.domkit.Object {
 
 	private var currentIndex:Int = 0;
 
@@ -14,11 +14,11 @@ class CreditsviewComp extends h2d.Flow implements h2d.domkit.Object {
 		// backButton.setFocus(true);
     }
 
-    static var SRC = <creditsview>
+    static var SRC = <gameoverview>
 		<flow vertical> 
-			<menubutton("BACK", onBack, null) public id="backButton"/>
+			<menubutton("MAIN MENU", onBack, null) public id="backButton"/>
 		</flow>
-	</creditsview>;
+	</gameoverview>;
 
 	public dynamic function onBack() {
 		Game.uiManager.changeScreen(Globals.TITLE_SCREEN);

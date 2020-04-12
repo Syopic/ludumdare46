@@ -1,6 +1,6 @@
 package ld.view.ui;
 
-import ld.view.ui.components.CreditsviewComp;
+import ld.view.ui.components.GameoverviewComp;
 import ld.data.Globals;
 import hxd.Key;
 import ld.view.ui.components.MenuviewComp;
@@ -8,16 +8,16 @@ import h2d.Flow.FlowAlign;
 import h2d.Bitmap;
 import h2d.Object;
 
-class CreditsScreen extends h2d.Object {
+class GameOverScreen extends h2d.Object {
 	var style:h2d.domkit.Style = null;
 
 	var bgImage:Bitmap;
-	var menuView:CreditsviewComp;
+	var menuView:GameoverviewComp;
 
 	public function new(parent:Object) {
 		super(parent);
 
-		var tile = hxd.Res.img.creditsScreen.toTile();
+		var tile = hxd.Res.img.gameoverScreen.toTile();
 		bgImage = new Bitmap(tile, this);
 
 		var panelFlow = new h2d.Flow(this);
@@ -28,10 +28,10 @@ class CreditsScreen extends h2d.Object {
 		panelFlow.paddingTop = 110;
 		panelFlow.paddingLeft = 32;
 
-
+		
 		style = new h2d.domkit.Style();
 		style.load(hxd.Res.styles.styles);
-		menuView = new CreditsviewComp(panelFlow);
+		menuView = new GameoverviewComp(panelFlow);
 		style.addObject(menuView);
 
 		hxd.Window.getInstance().addEventTarget(onEvent);

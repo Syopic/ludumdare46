@@ -18,6 +18,7 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 		<flow vertical id="menu"> 
 			<menubutton("START GAME", onStart, clearAll) />
 			<menubutton("CREDITS", onCredits, clearAll) />
+			<menubutton("GAME OVER", onGameOver, clearAll) />
 			<menubutton("EXIT", onExit, clearAll) />
 		</flow>
 	</menuview>;
@@ -29,6 +30,11 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 	public dynamic function onCredits() {
 		trace("onCredits");
 		Game.uiManager.changeScreen(Globals.CREDITS_SCREEN);
+	}
+
+	public dynamic function onGameOver() {
+		trace("onGameOver");
+		Game.uiManager.changeScreen(Globals.GAMEOVER_SCREEN);
 	}
 
 	public dynamic function onExit() {

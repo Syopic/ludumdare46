@@ -48,7 +48,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 
 	public function setFocus(isFocused) {
 		if (isFocused) {
-			Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.3);
+			Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.5);
 			dom.hover = true;
 			labelText.dom.hover = true;
 			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
@@ -58,5 +58,4 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 0, 0.1);
 		}
 	}
-	
 }
