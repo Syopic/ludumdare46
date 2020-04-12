@@ -33,6 +33,8 @@ class Game extends hxd.App {
 			dispose();
 			view.remove();
 			uiManager.remove();
+			view = null;
+			uiManager =null;
 			instance = new Game();
 		}, 0);
 	}
