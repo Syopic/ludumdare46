@@ -1,5 +1,6 @@
 package ld.view;
 
+import h2d.domkit.Style;
 import ld.view.ui.GameOverScreen;
 import ld.data.Globals;
 import ld.view.ui.TitleScreen;
@@ -10,17 +11,22 @@ import h2d.Object;
 
 class UIManager extends Object {
 
+    public var style:Style = new Style();
+    
     private var transitionView:TransitionView;
     private var titleScreen:TitleScreen;
     private var creditsScreen:CreditsScreen;
     private var gameOverScreen:GameOverScreen;
     private var screenContainer:Object;
+    
 
     public function new(parent:Object) {
         super(parent);
+        style.load(hxd.Res.styles.styles);
         screenContainer = new Object(this);
         transitionView = new TransitionView(this);
-        titleScreen = new TitleScreen(screenContainer);
+        changeScreen(Globals.TITLE_SCREEN);
+        // titleScreen = new TitleScreen(screenContainer);
     }
 
     public function changeScreen(screenName:String) {
@@ -48,12 +54,6 @@ class UIManager extends Object {
     }
 
     public function update(dt:Float) {
-        if (titleScreen != null)
-			titleScreen.update(dt);
-        if (creditsScreen != null)
-            creditsScreen.update(dt);
-        if (gameOverScreen != null)
-            gameOverScreen.update(dt);
         if (transitionView != null)
             transitionView.update(dt);
     }

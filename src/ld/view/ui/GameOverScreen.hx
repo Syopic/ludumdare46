@@ -9,8 +9,6 @@ import h2d.Bitmap;
 import h2d.Object;
 
 class GameOverScreen extends h2d.Object {
-	var style:h2d.domkit.Style = null;
-
 	var bgImage:Bitmap;
 	var menuView:GameoverviewComp;
 
@@ -29,10 +27,9 @@ class GameOverScreen extends h2d.Object {
 		panelFlow.paddingLeft = 32;
 
 		
-		style = new h2d.domkit.Style();
-		style.load(hxd.Res.styles.styles);
+		
 		menuView = new GameoverviewComp(panelFlow);
-		style.addObject(menuView);
+		Game.uiManager.style.addObject(menuView);
 
 		hxd.Window.getInstance().addEventTarget(onEvent);
 	}
@@ -48,11 +45,6 @@ class GameOverScreen extends h2d.Object {
 					Game.uiManager.changeScreen(Globals.TITLE_SCREEN);
 			}
 		}
-	}
-
-	public function update(dt:Float) {
-		if (style != null)
-			style.sync();
 	}
 
 	public function dispose() {

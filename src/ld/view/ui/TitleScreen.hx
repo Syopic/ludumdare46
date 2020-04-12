@@ -8,7 +8,6 @@ import h2d.Bitmap;
 import h2d.Object;
 
 class TitleScreen extends h2d.Object {
-	var style:h2d.domkit.Style = null;
 	var panelFlow = null;
 	var bgImage:Bitmap;
 
@@ -28,10 +27,8 @@ class TitleScreen extends h2d.Object {
 		panelFlow.paddingTop = 80;
 		panelFlow.paddingLeft = 32;
 
-		style = new h2d.domkit.Style();
-		style.load(hxd.Res.styles.styles);
 		menuView = new MenuviewComp(panelFlow);
-		style.addObject(menuView);
+		Game.uiManager.style.addObject(menuView);
 		hxd.Window.getInstance().addEventTarget(onEvent);
 
 	}
@@ -58,11 +55,6 @@ class TitleScreen extends h2d.Object {
 					}
 			}
 		}
-	}
-
-	public function update(dt:Float) {
-		if (style != null)
-			style.sync();
 	}
 
 	public function dispose() {
