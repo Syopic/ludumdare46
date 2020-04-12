@@ -47,6 +47,7 @@ class GamemenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 		currentIndex += di;
 		if (currentIndex < 0) currentIndex = menu.children.length - 1;
 		if (currentIndex > menu.children.length - 1) currentIndex = 0;
+		if (di != 0)
 		cast(menu.children[currentIndex], MenubuttonComp).setFocus(true);
 	}
 

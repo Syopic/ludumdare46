@@ -25,12 +25,12 @@ class UIManager extends Object {
 		style.load(hxd.Res.styles.styles);
 		screenContainer = new Object(this);
 		transitionView = new TransitionView(this);
-		changeScreen(Globals.TITLE_SCREEN);
+		changeScreen(Globals.TITLE_SCREEN, true);
     }
     
 
-	public function changeScreen(screenName:String) {
-		transitionView.show();
+	public function changeScreen(screenName:String, isFirst:Bool = false) {
+		if (!isFirst) transitionView.show();
 		Game.soundManager.playSound(Globals.SFX_SET.Transition, 0.5);
 		haxe.Timer.delay(function() {
 			if (creditsScreen != null) {

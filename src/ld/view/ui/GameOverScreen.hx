@@ -3,8 +3,6 @@ package ld.view.ui;
 import ld.view.ui.components.GameoverviewComp;
 import ld.data.Globals;
 import hxd.Key;
-import ld.view.ui.components.MenuviewComp;
-import h2d.Flow.FlowAlign;
 import h2d.Bitmap;
 import h2d.Object;
 

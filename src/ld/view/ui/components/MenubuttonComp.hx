@@ -13,6 +13,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 
 	@:p public var label(get, set):String;
 	public var action:Dynamic;
+	public var isFocused:Bool = false;
 
 	function get_label()
 		return labelText.text;
@@ -31,7 +32,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 		interactive.onClick = function(_) action();
 		interactive.onOver = function(_) {
 			if (clearAction != null)
-			clearAction();
+				clearAction();
 			setFocus(true);
 		};
 		interactive.onPush = function(_) {
@@ -47,12 +48,15 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 
 	public function setFocus(isFocused) {
 		if (isFocused) {
-			Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.5);
+			if (!this.isFocused)
+				Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.5);
 			labelText.color = new Vector(139 / 255, 149 / 255, 109 / 255, 1);
 			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
+			this.isFocused = true;
 		} else {
 			labelText.color = new Vector(77 / 255, 83 / 255, 60 / 255, 1);
 			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 0, 0.1);
+			this.isFocused = false;
 		}
 	}
 }

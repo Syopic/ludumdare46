@@ -50,8 +50,15 @@ class HUDScreen extends h2d.Object {
 					}
 				case Key.ENTER:
 					menuView.doAction();
-				case Key.ESCAPE:
+				case Key.ESCAPE: {
+
 					panelFlow.visible = !panelFlow.visible;
+					if (!panelFlow.visible) {
+						menuView.clearAll();
+						menuView.currentIndex = 0;
+						menuView.changeIndex(0);
+					}
+				}
 			}
 		}
 	}
