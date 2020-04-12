@@ -3,8 +3,8 @@ package ld.view.ui.components;
 import ld.data.Globals;
 import h2d.Flow;
 
-@:uiComp("menuview")
-class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
+@:uiComp("gamemenuview")
+class GamemenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 
 	public var currentIndex:Int = 0;
 
@@ -16,36 +16,23 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 		}, 100);
     }
 
-    static var SRC = <menuview>
+    static var SRC = <gamemenuview>
 		<flow vertical id="menu"> 
-			<menubutton("START GAME", onStart, clearAll) />
-			<menubutton("CREDITS", onCredits, clearAll) />
-			<menubutton("GAME OVER", onGameOver, clearAll) />
-			<menubutton("EXIT", onExit, clearAll) />
+			<menubutton("RESTART", onRestart, clearAll) public id="restartButton" />
+			<menubutton("MAIN MENU", onMainmenu, clearAll) public id="mainMenuButton" />
 		</flow>
-	</menuview>;
+	</gamemenuview>;
 
-	public dynamic function onStart() {
-		trace("onStart");
+	public dynamic function onRestart() {
+		trace("onRestart");
 		clearAll();
 		Game.uiManager.changeScreen(Globals.HUD_SCREEN);
 	}
 
-	public dynamic function onCredits() {
-		trace("onCredits");
+	public dynamic function onMainmenu() {
+		trace("onMainmenu");
 		clearAll();
-		Game.uiManager.changeScreen(Globals.CREDITS_SCREEN);
-	}
-
-	public dynamic function onGameOver() {
-		trace("onGameOver");
-		clearAll();
-		Game.uiManager.changeScreen(Globals.GAMEOVER_SCREEN);
-	}
-
-	public dynamic function onExit() {
-		clearAll();
-		trace("onExit");
+		Game.uiManager.changeScreen(Globals.TITLE_SCREEN);
 	}
 
 	public dynamic function doAction() {
