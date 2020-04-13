@@ -30,7 +30,6 @@ class TitleScreen extends h2d.Object {
 		menuView = new MenuviewComp(panelFlow);
 		Game.uiManager.style.addObject(menuView);
 		hxd.Window.getInstance().addEventTarget(onEvent);
-
 	}
 
 	function onEvent(event:hxd.Event) {
