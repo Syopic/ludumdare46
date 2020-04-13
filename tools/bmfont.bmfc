@@ -2,7 +2,7 @@
 fileVersion=1
 
 # font settings
-fontName=Arial
+fontName=Ebrima
 fontFile=
 charSet=0
 fontSize=32
@@ -54,6 +54,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-
+chars=40
 
 # imported icon images

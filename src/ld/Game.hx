@@ -37,7 +37,7 @@ class Game extends hxd.App {
 			view.remove();
 			uiManager.remove();
 			view = null;
-			uiManager =null;
+			uiManager = null;
 			instance = new Game();
 		}, 0);
 	}
@@ -47,15 +47,13 @@ class Game extends hxd.App {
 			hxd.Window.getInstance().height / (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR));
 		if (uiManager != null) {
 			uiManager.setScale(scaleCoef * Globals.SCALE_FACTOR);
-			uiManager.x = hxd.Window.getInstance().width / 2 - (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR / 2) * scaleCoef;
-			uiManager.y = hxd.Window.getInstance().height / 2 - (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR / 2) * scaleCoef;
 		}
 
 		if (view != null) {
 			view.setScale(scaleCoef * Globals.SCALE_FACTOR);
-			view.x = hxd.Window.getInstance().width / 2 - (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR / 2) * scaleCoef;
-			view.y = hxd.Window.getInstance().height / 2 - (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR / 2) * scaleCoef;
 		}
+		s2d.x = hxd.Window.getInstance().width / 2 - (Globals.STAGE_WIDTH * Globals.SCALE_FACTOR / 2) * scaleCoef;
+		s2d.y = hxd.Window.getInstance().height / 2 - (Globals.STAGE_HEIGHT * Globals.SCALE_FACTOR / 2) * scaleCoef;
 	}
 
 	override function update(dt:Float) {
@@ -73,6 +71,5 @@ class Game extends hxd.App {
 
 		if (view != null)
 			view.dispose();
-
 	}
 }
