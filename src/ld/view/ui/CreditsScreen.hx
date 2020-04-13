@@ -27,7 +27,6 @@ class CreditsScreen extends h2d.Object {
 		panelFlow.paddingTop = 110;
 		panelFlow.paddingLeft = 32;
 
-
 		menuView = new CreditsviewComp(panelFlow);
 		Game.uiManager.style.addObject(menuView);
 

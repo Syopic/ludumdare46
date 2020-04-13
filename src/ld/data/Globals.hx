@@ -1,15 +1,16 @@
 package ld.data;
 
+import ld.utils.macros.ProjectMacros;
+
 class Globals {
 	// Config
 	public static var skipMainMenu:Bool = true;
 
 	// Constants
+	public static var VERSION:String = "v. " + "0.1.0.0 " + ProjectMacros.getBuildDate().toString();
     public static var SCALE_FACTOR:Float = 4;
     public static var STAGE_WIDTH:Int = 160;
 	public static var STAGE_HEIGHT:Int = 144;
-	
-
 
     public static var COLOR_SET = {
 		Transparent: 16777215,

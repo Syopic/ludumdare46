@@ -93,5 +93,6 @@ class HUDScreen extends h2d.Object {
 	public function dispose() {
 		hxd.Window.getInstance().removeEventTarget(onEvent);
 		panelFlow.visible = false;
+		Game.view.dispose();
 	}
 }

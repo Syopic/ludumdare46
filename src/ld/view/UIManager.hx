@@ -22,6 +22,8 @@ class UIManager extends Object {
 
 	private var screenContainer:Object;
 
+	public var currentScreen:String = "";
+
 	public function new(parent:Object) {
 		super(parent);
 		style.load(hxd.Res.styles.styles);
@@ -34,6 +36,7 @@ class UIManager extends Object {
 	}
 
 	public function changeScreen(screenName:String, isFirst:Bool = false) {
+		currentScreen = screenName;
 		if (!isFirst)
 			transitionView.show();
 		Game.soundManager.playSound(Globals.SFX_SET.Transition, 0.5);

@@ -29,13 +29,12 @@ class GameView extends Object {
 	
 	public function init() {
 		dispose();
-		for (i in 0...10) {
+		for (i in 0...5) {
 			var unit = new BaseUnit(camera);
 			units.push(unit);
 			unit.position.x = Std.random(160);
 			unit.position.y = Std.random(144);
 		}
-		
 
 		var interaction = new Interactive(Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, this);
 		interaction.onMove = function(event:hxd.Event) {
@@ -48,7 +47,7 @@ class GameView extends Object {
 	public function update(dt:Float) {
 		for (unit in units) {
 			if (unit != null) {
-				unit.position.x += 1;
+				unit.position.x += 0.1;
 				unit.update(dt);
 				Game.uiManager.hudScreen.setScore(Std.int(unit.position.x));
 				ps.addParticle(ParticleHelper.fontan(Std.int(unit.position.x + 2), Std.int(unit.position.y), Globals.COLOR_SET.Como));
