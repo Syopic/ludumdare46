@@ -60,7 +60,7 @@ class UIManager extends Object {
 			switch (screenName) {
 				case Globals.TITLE_SCREEN:
 					{
-						// Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 0.7);
+						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 0.6, true, true);
 						titleScreen = new TitleScreen(screenContainer);
 					}
 				case Globals.CREDITS_SCREEN:
@@ -73,6 +73,7 @@ class UIManager extends Object {
 					}
 				case Globals.HUD_SCREEN:
 					{
+						Game.soundManager.stopSound(Globals.MUSIC_SET.TitleTheme);
 						hudScreen = new HUDScreen(screenContainer);
 						Game.controller.startGame();
 					}

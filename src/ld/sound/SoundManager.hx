@@ -25,9 +25,9 @@ class SoundManager {
 		}
 	}
 
-	public function playSound(name:String, volume:Float = 1, loop:Bool = false) {
+	public function playSound(name:String, volume:Float = 1, loop:Bool = false, oneInstance:Bool = false) {
 		var sound:Sound = sounds[name];
-		if (sound != null) {
+		if (sound != null && (channels[name] == null || !oneInstance)) {
 			var channel = sound.play(loop);
 			channel.mute = this.isMute;
 			channel.volume = volume;
