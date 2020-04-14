@@ -12,8 +12,8 @@ class BaseUnit extends GameObject {
 
     public function new(parent:Object) {
 		super(parent);
-        var tile = Tile.fromColor(Globals.COLOR_SET.SpringRain, 5, 5);
-		unit = new Bitmap(tile, this);
+        // var tile = Tile.fromColor(Globals.COLOR_SET.SpringRain, 5, 5);
+		// unit = new Bitmap(tile, this);
     }
     
     override function update(dt:Float) {
