@@ -18,16 +18,12 @@ class HUDScreen extends h2d.Object {
 	var menuView:GamemenuviewComp;
 	var panelFlow:h2d.Flow;
 	var scoreTF:Text;
-	var muteSoundBtn:MuteSoundButton;
 
 	public function new(parent:Object) {
 		super(parent);
 
 		var tile = hxd.Res.img.hudScreen.toTile();
 		bgImage = new Bitmap(tile, this);
-
-		muteSoundBtn = new MuteSoundButton(this);
-		muteSoundBtn.setPosition(144, 8);
 
 		panelFlow = new h2d.Flow(this);
 		panelFlow.padding = 5;

@@ -7,11 +7,12 @@ import h2d.Interactive;
 import h2d.Bitmap;
 import h2d.Object;
 
+
 class MuteSoundButton extends Object {
     public function new(parent:Object) {
         super(parent);
-        var b1 = new Bitmap(Game.view.mapDataStorage.getTileById(255), this);
-        var b2 = new Bitmap(Game.view.mapDataStorage.getTileById(254), this);
+        var b1 = new Bitmap(Game.controller.mapDataStorage.getTileById(255), this);
+        var b2 = new Bitmap(Game.controller.mapDataStorage.getTileById(254), this);
         
         this.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
     

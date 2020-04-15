@@ -1,5 +1,6 @@
 package ld;
 
+import ld.data.MapDataStorage;
 import ld.utils.shaders.OverlayTexture;
 import ld.data.Globals;
 import ld.controller.GameController;
@@ -16,6 +17,7 @@ class Game extends hxd.App {
 	public static var view:GameView;
 	public static var soundManager:SoundManager;
 	public static var debugPanel:DebugPanel;
+	public static var mapDataStorage:MapDataStorage;
 
 	static function main() {
 		hxd.Res.initEmbed();
@@ -26,6 +28,7 @@ class Game extends hxd.App {
 		soundManager = new SoundManager();
 		// soundManager.playSound(Globals.MUSIC_SET.TitleTheme);
 		controller = new GameController();
+		mapDataStorage = controller.mapDataStorage;
 		view = new GameView(s2d);
 		uiManager = new UIManager(s2d);
 		var ot = new OverlayTexture(4);

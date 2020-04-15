@@ -12,7 +12,7 @@ class AnimCoinThing extends BaseThing {
     var anim:Anim;
     public function new(parent:Object) {
         super(parent);
-        var tile = Game.view.mapDataStorage.tileImage.sub(8, 56, 64, 8);
+        var tile = Game.controller.mapDataStorage.tileImage.sub(8, 56, 64, 8);
         anim = new Anim(tile.split(8), 20, this);
         anim.pause = true;
 

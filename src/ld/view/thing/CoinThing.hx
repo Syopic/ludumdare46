@@ -8,7 +8,7 @@ class CoinThing extends BaseThing {
 
     public function new(parent:Object) {
         super(parent);
-        var tile = Game.view.mapDataStorage.getTileById(113);
+        var tile = Game.controller.mapDataStorage.getTileById(113);
         new Bitmap(tile, this);
     }
 }

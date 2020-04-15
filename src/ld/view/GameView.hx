@@ -3,25 +3,16 @@ package ld.view;
 import ld.view.base.GameObject;
 import h2d.filter.Glow;
 import h2d.TileGroup;
-import h2d.col.Point;
 import hxd.Cursor;
 import h2d.Mask;
 import h2d.Interactive;
-import h2d.col.Bounds;
 import ld.utils.particles.ParticleSystem;
-import ld.utils.particles.ParticleHelper;
-import h2d.Tile;
 import ld.data.Globals;
-import h2d.Bitmap;
 import h2d.Object;
-import ld.view.unit.BaseUnit;
 import ld.view.base.Camera;
-import ld.data.MapDataStorage;
 import ld.view.thing.AnimCoinThing;
-import ld.view.thing.CoinThing;
 
 class GameView extends Object {
-	public var mapDataStorage:MapDataStorage;
 
 	var container:Object;
 	var ps:ParticleSystem;
@@ -42,10 +33,9 @@ class GameView extends Object {
 
 	public function init() {
 		dispose();
-		mapDataStorage = new MapDataStorage(hxd.Res.map);
-		sandTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
-		bushTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
-		objectsTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
+		sandTiledGroup = new TileGroup(Game.mapDataStorage.tileImage, camera);
+		bushTiledGroup = new TileGroup(Game.mapDataStorage.tileImage, camera);
+		objectsTiledGroup = new TileGroup(Game.mapDataStorage.tileImage, camera);
 		bushTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		objectsTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 
@@ -66,18 +56,18 @@ class GameView extends Object {
 	}
 
 	public function drawMap() {
-		for (y in 0...mapDataStorage.mapHeight) {
-			for (x in 0...mapDataStorage.mapWidth) {
-				var tid = mapDataStorage.getTileId(x, y, 0);
+		for (y in 0...Game.mapDataStorage.mapHeight) {
+			for (x in 0...Game.mapDataStorage.mapWidth) {
+				var tid = Game.mapDataStorage.getTileId(x, y, 0);
 				if (tid != 0)
-					sandTiledGroup.add(x * mapDataStorage.tileWidth, y * mapDataStorage.tileHeight, mapDataStorage.getTileById(tid - 1));
-				tid = mapDataStorage.getTileId(x, y, 1);
+					sandTiledGroup.add(x * Game.mapDataStorage.tileWidth, y * Game.mapDataStorage.tileHeight, Game.mapDataStorage.getTileById(tid - 1));
+				tid = Game.mapDataStorage.getTileId(x, y, 1);
 				if (tid != 0)
-					bushTiledGroup.add(x * mapDataStorage.tileWidth, y * mapDataStorage.tileHeight, mapDataStorage.getTileById(tid - 1));
+					bushTiledGroup.add(x * Game.mapDataStorage.tileWidth, y * Game.mapDataStorage.tileHeight, Game.mapDataStorage.getTileById(tid - 1));
 			}
 		}
 
-		var mapObjects = mapDataStorage.getObjects();
+		var mapObjects = Game.mapDataStorage.getObjects();
 
 		for (obj in mapObjects) {
 			// sandTiledGroup.add(obj.x, obj.y - obj.height, tiles[obj.gid - 1]);

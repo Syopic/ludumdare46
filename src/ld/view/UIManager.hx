@@ -1,5 +1,6 @@
 package ld.view;
 
+import ld.view.ui.components.MuteSoundButton;
 import ld.view.ui.HUDScreen;
 import h2d.domkit.Style;
 import ld.view.ui.GameOverScreen;
@@ -17,6 +18,7 @@ class UIManager extends Object {
 	private var titleScreen:TitleScreen;
 	private var creditsScreen:CreditsScreen;
 	private var gameOverScreen:GameOverScreen;
+	var muteSoundBtn:MuteSoundButton;
 
 	public var hudScreen:HUDScreen;
 
@@ -28,6 +30,8 @@ class UIManager extends Object {
 		super(parent);
 		style.load(hxd.Res.styles.styles);
 		screenContainer = new Object(this);
+		muteSoundBtn = new MuteSoundButton(this);
+		muteSoundBtn.setPosition(144, 8);
 		transitionView = new TransitionView(this);
 		if (Globals.skipMainMenu)
 			changeScreen(Globals.HUD_SCREEN, true);
@@ -76,7 +80,7 @@ class UIManager extends Object {
 						
 						Game.soundManager.stopSound(Globals.MUSIC_SET.TitleTheme);
 						Game.controller.startGame();
-						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 1, true, true);
+						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 0.6, true, true);
 						hudScreen = new HUDScreen(screenContainer);
 					}
 			}
