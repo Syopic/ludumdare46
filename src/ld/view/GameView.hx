@@ -1,5 +1,6 @@
 package ld.view;
 
+import ld.view.base.GameObject;
 import h2d.filter.Glow;
 import h2d.TileGroup;
 import h2d.col.Point;
@@ -14,19 +15,19 @@ import ld.data.Globals;
 import h2d.Bitmap;
 import h2d.Object;
 import ld.view.unit.BaseUnit;
-import ld.view.unit.FireUnit;
 import ld.view.base.Camera;
 import ld.data.MapDataStorage;
+import ld.view.thing.AnimCoinThing;
+import ld.view.thing.CoinThing;
 
 class GameView extends Object {
+	public var mapDataStorage:MapDataStorage;
+
 	var container:Object;
-	var unit:BaseUnit;
 	var ps:ParticleSystem;
 	var camera:Camera;
-	var units:Array<BaseUnit> = new Array<BaseUnit>();
+	var objects:Array<GameObject> = new Array<GameObject>();
 	var interaction:Interactive;
-	var mds:MapDataStorage;
-	var tileImage:Tile;
 	var sandTiledGroup:TileGroup;
 	var bushTiledGroup:TileGroup;
 	var objectsTiledGroup:TileGroup;
@@ -35,24 +36,16 @@ class GameView extends Object {
 		super(parent);
 		var mask:Mask = new Mask(Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, this);
 		camera = new Camera(mask, Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, Globals.STAGE_WIDTH / 2, Globals.STAGE_HEIGHT / 2);
-		tileImage = hxd.Res.img.tileSet.toTile();
 		// var tile = hxd.Res.img.gameoverScreen.toTile();
 		// var bgImage = new Bitmap(tile, camera);
 	}
 
 	public function init() {
 		dispose();
-		mds = new MapDataStorage(hxd.Res.map);
-		sandTiledGroup = new TileGroup(tileImage, camera);
-		for (i in 0...4) {
-			var unit = new FireUnit(camera);
-			units.push(unit);
-			unit.position.x = Std.random(160);
-			unit.position.y = Std.random(144);
-		}
-
-		bushTiledGroup = new TileGroup(tileImage, camera);
-		objectsTiledGroup = new TileGroup(tileImage, camera);
+		mapDataStorage = new MapDataStorage(hxd.Res.map);
+		sandTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
+		bushTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
+		objectsTiledGroup = new TileGroup(mapDataStorage.tileImage, camera);
 		bushTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		objectsTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 
@@ -61,7 +54,9 @@ class GameView extends Object {
 		// fireUnit.position = new Point(40, 40);
 		// units.push(fireUnit);
 
+
 		interaction = new Interactive(Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, this);
+		interaction.propagateEvents = true;
 		interaction.onMove = function(event:hxd.Event) {
 			camera.viewX = event.relX;
 			camera.viewY = event.relY;
@@ -71,42 +66,39 @@ class GameView extends Object {
 	}
 
 	public function drawMap() {
-		// make sub tiles from tile
-		var tiles = [
-			for (y in 0...Std.int(tileImage.height / mds.tileHeight))
-				for (x in 0...Std.int(tileImage.width / mds.tileWidth))
-					tileImage.sub(x * mds.tileWidth, y * mds.tileHeight, mds.tileWidth, mds.tileHeight)
-		];
-
-		for (y in 0...mds.mapHeight) {
-			for (x in 0...mds.mapWidth) {
-				var tid = mds.getTileId(x, y, 0);
+		for (y in 0...mapDataStorage.mapHeight) {
+			for (x in 0...mapDataStorage.mapWidth) {
+				var tid = mapDataStorage.getTileId(x, y, 0);
 				if (tid != 0)
-					sandTiledGroup.add(x * mds.tileWidth, y * mds.tileHeight, tiles[tid - 1]);
-				var tid = mds.getTileId(x, y, 1);
+					sandTiledGroup.add(x * mapDataStorage.tileWidth, y * mapDataStorage.tileHeight, mapDataStorage.getTileById(tid - 1));
+				tid = mapDataStorage.getTileId(x, y, 1);
 				if (tid != 0)
-					bushTiledGroup.add(x * mds.tileWidth, y * mds.tileHeight, tiles[tid - 1]);
+					bushTiledGroup.add(x * mapDataStorage.tileWidth, y * mapDataStorage.tileHeight, mapDataStorage.getTileById(tid - 1));
 			}
 		}
 
-		var objects = mds.getObjects();
-		
-		for (obj in objects) {
-			sandTiledGroup.add(obj.x, obj.y - obj.height, tiles[obj.gid - 1]);
+		var mapObjects = mapDataStorage.getObjects();
+
+		for (obj in mapObjects) {
+			// sandTiledGroup.add(obj.x, obj.y - obj.height, tiles[obj.gid - 1]);
+
+			var coin = new AnimCoinThing(camera);
+			objects.push(coin);
+			coin.position.x = obj.x;
+			coin.position.y = obj.y - obj.height;
 		}
-		
 	}
 
 	public function update(dt:Float) {
-		for (unit in units) {
-			if (unit != null) {
-				// unit.position.x += 0.1;
-				unit.update(dt);
-				Game.uiManager.hudScreen.setScore(Std.int(unit.position.x));
+		for (obj in objects) {
+			if (obj != null) {
+				// obj.position.x += 0.1;
+				obj.update(dt);
+				Game.uiManager.hudScreen.setScore(Std.int(obj.position.x));
 				// ps.addParticle(ParticleHelper.fontan(Std.int(unit.position.x + 2), Std.int(unit.position.y), Globals.COLOR_SET.Como));
-				if (unit.position.x > Globals.STAGE_WIDTH) {
-					unit.position.x = 0;
-					unit.position.y = Std.random(144);
+				if (obj.position.x > Globals.STAGE_WIDTH) {
+					obj.position.x = 0;
+					obj.position.y = Std.random(144);
 				}
 			}
 		}
@@ -118,11 +110,11 @@ class GameView extends Object {
 	}
 
 	public function dispose() {
-		for (unit in units) {
-			unit.remove();
-			unit = null;
+		for (obj in objects) {
+			obj.remove();
+			obj = null;
 		}
-		units = new Array<BaseUnit>();
+		objects = new Array<GameObject>();
 		if (ps != null)
 			ps.dispose();
 

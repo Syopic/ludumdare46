@@ -40,9 +40,10 @@ class HUDScreen extends h2d.Object {
 
 		scoreTF = new Text(Res.font.gb.toFont());
 		
+		
 		scoreTF.color = new Vector(139 / 255, 149 / 255, 109 / 255, 1);
 		scoreTF.textAlign = Left;
-		scoreTF.setPosition(20, 9);
+		scoreTF.setPosition(20, 8);
 		this.addChild(scoreTF);
 		this.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		
