@@ -29,6 +29,7 @@ class GameView extends Object {
 	var tileImage:Tile;
 	var sandTiledGroup:TileGroup;
 	var bushTiledGroup:TileGroup;
+	var objectsTiledGroup:TileGroup;
 
 	public function new(parent:Object) {
 		super(parent);
@@ -39,12 +40,11 @@ class GameView extends Object {
 		// var bgImage = new Bitmap(tile, camera);
 	}
 
-
 	public function init() {
 		dispose();
 		mds = new MapDataStorage(hxd.Res.map);
 		sandTiledGroup = new TileGroup(tileImage, camera);
-		for (i in 0...10) {
+		for (i in 0...4) {
 			var unit = new FireUnit(camera);
 			units.push(unit);
 			unit.position.x = Std.random(160);
@@ -52,7 +52,9 @@ class GameView extends Object {
 		}
 
 		bushTiledGroup = new TileGroup(tileImage, camera);
+		objectsTiledGroup = new TileGroup(tileImage, camera);
 		bushTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
+		objectsTiledGroup.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 
 		drawMap();
 		// var fireUnit:FireUnit = new FireUnit(camera);
@@ -76,9 +78,8 @@ class GameView extends Object {
 					tileImage.sub(x * mds.tileWidth, y * mds.tileHeight, mds.tileWidth, mds.tileHeight)
 		];
 
-		for (y in 0...mds.mapHeight)
+		for (y in 0...mds.mapHeight) {
 			for (x in 0...mds.mapWidth) {
-				// var ti = mds.getTileItem(y, x);
 				var tid = mds.getTileId(x, y, 0);
 				if (tid != 0)
 					sandTiledGroup.add(x * mds.tileWidth, y * mds.tileHeight, tiles[tid - 1]);
@@ -86,6 +87,14 @@ class GameView extends Object {
 				if (tid != 0)
 					bushTiledGroup.add(x * mds.tileWidth, y * mds.tileHeight, tiles[tid - 1]);
 			}
+		}
+
+		var objects = mds.getObjects();
+		
+		for (obj in objects) {
+			sandTiledGroup.add(obj.x, obj.y - obj.height, tiles[obj.gid - 1]);
+		}
+		
 	}
 
 	public function update(dt:Float) {

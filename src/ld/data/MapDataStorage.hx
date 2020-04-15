@@ -30,6 +30,13 @@ class MapDataStorage {
     public function getTileId(x:Int, y:Int, layer:Int = 0):Int {
         return  tiledMapData.layers[layer].data[x + y * mapWidth];
     }
+    public function getObjects(layer:Int = 2):Array<MapObject> {
+        return  tiledMapData.layers[layer].objects;
+    }
+
+    // public function getObjectById(id:Int, layer:Int = 2):MapObject {
+    //     return  tiledMapData.layers[layer].objects;
+    // }
     
     public function getTileItem(x:Int, y:Int):TileItem {
         var tid = tiledMapData.layers[0].data[x + y * mapWidth];
