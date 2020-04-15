@@ -7,7 +7,7 @@ import hxd.snd.Channel;
 class SoundManager {
 	var sounds:Map<String, Sound> = new Map<String, Sound>();
 	var channels:Map<String, Channel> = new Map<String, Channel>();
-	var isMute:Bool = false;
+	public var isMute:Bool = false;
 
 	public function new() {
 		init();

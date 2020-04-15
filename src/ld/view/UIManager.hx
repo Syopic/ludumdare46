@@ -73,9 +73,11 @@ class UIManager extends Object {
 					}
 				case Globals.HUD_SCREEN:
 					{
+						
 						Game.soundManager.stopSound(Globals.MUSIC_SET.TitleTheme);
-						hudScreen = new HUDScreen(screenContainer);
 						Game.controller.startGame();
+						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 1, true, true);
+						hudScreen = new HUDScreen(screenContainer);
 					}
 			}
 		}, 200);

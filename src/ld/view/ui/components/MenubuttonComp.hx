@@ -49,7 +49,7 @@ class MenubuttonComp extends h2d.Flow implements h2d.domkit.Object {
 	public function setFocus(isFocused) {
 		if (isFocused) {
 			if (!this.isFocused)
-				Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.5);
+				// Game.soundManager.playSound(Globals.SFX_SET.UIHover, 0.5);
 			labelText.color = new Vector(139 / 255, 149 / 255, 109 / 255, 1);
 			labelText.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 			this.isFocused = true;

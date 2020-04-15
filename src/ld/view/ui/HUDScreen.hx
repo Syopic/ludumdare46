@@ -5,6 +5,7 @@ import h2d.Text;
 import hxd.Res;
 import h3d.Vector;
 import ld.view.ui.components.GamemenuviewComp;
+import ld.view.ui.components.MuteSoundButton;
 import ld.data.Globals;
 import hxd.Key;
 import ld.view.ui.components.MenuviewComp;
@@ -17,12 +18,16 @@ class HUDScreen extends h2d.Object {
 	var menuView:GamemenuviewComp;
 	var panelFlow:h2d.Flow;
 	var scoreTF:Text;
+	var muteSoundBtn:MuteSoundButton;
 
 	public function new(parent:Object) {
 		super(parent);
 
 		var tile = hxd.Res.img.hudScreen.toTile();
 		bgImage = new Bitmap(tile, this);
+
+		muteSoundBtn = new MuteSoundButton(this);
+		muteSoundBtn.setPosition(144, 8);
 
 		panelFlow = new h2d.Flow(this);
 		panelFlow.padding = 5;
@@ -45,7 +50,8 @@ class HUDScreen extends h2d.Object {
 		scoreTF.textAlign = Left;
 		scoreTF.setPosition(20, 8);
 		this.addChild(scoreTF);
-		this.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
+		bgImage.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
+		scoreTF.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		
 	}
 
