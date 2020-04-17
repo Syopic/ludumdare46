@@ -28,7 +28,7 @@ class MenuviewComp extends h2d.Flow implements h2d.domkit.Object {
 	public dynamic function onStart() {
 		trace("onStart" + currentIndex);
 		clearAll();
-		Game.uiManager.changeScreen(Globals.HUD_SCREEN);
+		Game.uiManager.changeScreen(Globals.LEVELSELECT_SCREEN);
 	}
 
 	public dynamic function onCredits() {

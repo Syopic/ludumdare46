@@ -37,4 +37,5 @@ class Globals {
 	public static inline var CREDITS_SCREEN = "creditsScreen";
 	public static inline var GAMEOVER_SCREEN = "gameoverScreen";
 	public static inline var HUD_SCREEN = "hudScreen";
+	public static inline var LEVELSELECT_SCREEN = "levelSelect";
 }

@@ -22,12 +22,11 @@ class TextBlob extends GameObject {
 		container = new Object(this);
 		messageTF = new Text(Res.font.gb.toFont());
 		messageTF.textColor = Globals.COLOR_SET.TimberGreen;
-		messageTF.maxWidth = Globals.STAGE_WIDTH - 12;
 		messageTF.textAlign = Left;
 		messageTF.text = text;
-		var tile = Tile.fromColor(Globals.COLOR_SET.SpringRain, Std.int(messageTF.textWidth) - 1, 10);
+		var tile = Tile.fromColor(Globals.COLOR_SET.SpringRain, Std.int(messageTF.textWidth) + 1, Std.int(messageTF.textHeight));
 		bg = new Bitmap(tile, container);
-		bg.setPosition(-1, 0);
+		bg.setPosition(-2, 0);
 		bg.filter = new Glow(Globals.COLOR_SET.Aztec, 1, 0.1);
 		container.addChild(messageTF);
 		container.setPosition(-Std.int(tile.width / 2), -tile.height); 

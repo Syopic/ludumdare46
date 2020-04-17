@@ -13,9 +13,8 @@ import ld.view.base.Camera;
 import ld.view.thing.AnimCoinThing;
 
 class GameView extends Object {
-
 	public var uiContainer:Object;
-	
+
 	var container:Object;
 	var ps:ParticleSystem;
 	var camera:Camera;
@@ -49,8 +48,8 @@ class GameView extends Object {
 		interaction = new Interactive(Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, this);
 		interaction.propagateEvents = true;
 		interaction.onMove = function(event:hxd.Event) {
-			camera.viewX = event.relX;
-			camera.viewY = event.relY;
+			// camera.viewX = event.relX;
+			// camera.viewY = event.relY;
 		}
 		interaction.cursor = Cursor.Default;
 		ps = new ParticleSystem(camera);
@@ -103,6 +102,15 @@ class GameView extends Object {
 	}
 
 	public function dispose() {
+		if (camera != null)
+			camera.removeChildren();
+		if (sandTiledGroup != null)
+			sandTiledGroup.removeChildren();
+		if (bushTiledGroup != null)
+			bushTiledGroup.removeChildren();
+		if (objectsTiledGroup != null)
+			objectsTiledGroup.removeChildren();
+
 		for (obj in objects) {
 			obj.remove();
 			obj = null;
