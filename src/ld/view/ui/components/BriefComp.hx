@@ -21,7 +21,7 @@ class BriefComp extends Object {
 	var messages:Array<BriefMessage>;
 	var nextButtonDelay:Int = 20;
 
-	public function new(parent:Object) {
+	public function new(?parent:Object) {
 		super(parent);
 		messages = new Array<BriefMessage>();
 		var tile = Tile.fromColor(Globals.COLOR_SET.SpringRain, Globals.STAGE_WIDTH, 40);

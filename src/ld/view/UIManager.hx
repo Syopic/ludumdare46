@@ -12,6 +12,7 @@ import ld.view.ui.GameOverScreen;
 import ld.view.ui.TransitionView;
 import h2d.Object;
 import ld.view.ui.components.BriefComp;
+import ld.view.ui.components.TextBlob;
 
 class UIManager extends Object {
 	public var style:Style = new Style();
@@ -29,10 +30,13 @@ class UIManager extends Object {
 	private var screenContainer:Object;
 
 	public var currentScreen:String = "";
+	public var textBlobs:Map<String, TextBlob>;
 
 	public function new(parent:Object) {
 		super(parent);
 		style.load(hxd.Res.styles.styles);
+
+		textBlobs = new Map<String, TextBlob>();
 		inGameContainer = new Object(this);
 		screenContainer = new Object(this);
 		muteSoundBtn = new MuteSoundButton(this);
@@ -87,7 +91,8 @@ class UIManager extends Object {
 						
 						Game.soundManager.stopSound(Globals.MUSIC_SET.TitleTheme);
 						Game.controller.startGame();
-						showBrief();
+						// showBrief();
+						showTextBlob(30, 30, "MOCK", 1200);
 						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 0.6, true, true);
 						hudScreen = new HUDScreen(screenContainer);
 					}
@@ -98,14 +103,28 @@ class UIManager extends Object {
 	public function showBrief() {
 		hideBrief();
 		if (briefComp == null) {
-			briefComp = new BriefComp(inGameContainer);
+			briefComp = new BriefComp();
 			briefComp.addMessage({img: Res.img.textBlobHeroLeft.toTile(), text: "What the...?\nIm surrounded!\nthird textline", isLeft:true});
 			briefComp.addMessage({img: Res.img.textBlobHeroRight.toTile(), text: "Ho.. ho.. ho..!\nIm superman!", isLeft:false});
+			briefComp.addMessage({img: Res.img.textBlobHeroRight.toTile(), text: "GOOD BYE!", isLeft:false});
+			inGameContainer.addChild(briefComp);
 			briefComp.start();
-			// briefComp.addMessage("What the...1?\nIm surrounded!");
-			// briefComp.addMessage("Ho.. ho.. ho..!\nIm superman!");
 		}
 	}
+	public function showTextBlob(x:Int, y:Int, text:String, duration:Int = 0):String {
+		var tb = new TextBlob(text, duration,  Game.view.uiContainer);
+		tb.setPosition(x, y);
+		textBlobs[tb.guid] = tb;
+		return tb.guid;
+	}
+
+	public function hideTextBlob(id:String) {
+		if (textBlobs[id] != null) {
+			textBlobs[id].remove();
+			textBlobs[id] = null;
+		}
+	}
+
 
 	public function hideBrief() {
 		if (briefComp != null) {

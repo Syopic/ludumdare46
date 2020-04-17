@@ -14,6 +14,8 @@ import ld.view.thing.AnimCoinThing;
 
 class GameView extends Object {
 
+	public var uiContainer:Object;
+	
 	var container:Object;
 	var ps:ParticleSystem;
 	var camera:Camera;
@@ -52,6 +54,8 @@ class GameView extends Object {
 		}
 		interaction.cursor = Cursor.Default;
 		ps = new ParticleSystem(camera);
+
+		uiContainer = new Object(camera);
 	}
 
 	public function drawMap() {
