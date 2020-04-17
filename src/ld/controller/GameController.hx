@@ -5,7 +5,7 @@ import ld.data.MapDataStorage;
 class GameController {
 	public var mapDataStorage:MapDataStorage;
 
-	var isPause:Bool = false;
+	public var isPause:Bool = false;
 
 	public function new() {
 		mapDataStorage = new MapDataStorage(hxd.Res.map);

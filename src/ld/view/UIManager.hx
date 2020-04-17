@@ -1,5 +1,6 @@
 package ld.view;
 
+import hxd.Res;
 import ld.view.ui.components.MuteSoundButton;
 import ld.view.ui.HUDScreen;
 import h2d.domkit.Style;
@@ -10,6 +11,7 @@ import ld.view.ui.CreditsScreen;
 import ld.view.ui.GameOverScreen;
 import ld.view.ui.TransitionView;
 import h2d.Object;
+import ld.view.ui.components.BriefComp;
 
 class UIManager extends Object {
 	public var style:Style = new Style();
@@ -18,10 +20,12 @@ class UIManager extends Object {
 	private var titleScreen:TitleScreen;
 	private var creditsScreen:CreditsScreen;
 	private var gameOverScreen:GameOverScreen;
+	public var briefComp:BriefComp;
 	var muteSoundBtn:MuteSoundButton;
 
 	public var hudScreen:HUDScreen;
 
+	private var inGameContainer:Object;
 	private var screenContainer:Object;
 
 	public var currentScreen:String = "";
@@ -29,12 +33,15 @@ class UIManager extends Object {
 	public function new(parent:Object) {
 		super(parent);
 		style.load(hxd.Res.styles.styles);
+		inGameContainer = new Object(this);
 		screenContainer = new Object(this);
 		muteSoundBtn = new MuteSoundButton(this);
 		muteSoundBtn.setPosition(144, 8);
 		transitionView = new TransitionView(this);
-		if (Globals.skipMainMenu)
+		if (Globals.skipMainMenu) {
+
 			changeScreen(Globals.HUD_SCREEN, true);
+		}
 		else
 			changeScreen(Globals.TITLE_SCREEN, true);
 	}
@@ -80,6 +87,7 @@ class UIManager extends Object {
 						
 						Game.soundManager.stopSound(Globals.MUSIC_SET.TitleTheme);
 						Game.controller.startGame();
+						showBrief();
 						Game.soundManager.playSound(Globals.MUSIC_SET.TitleTheme, 0.6, true, true);
 						hudScreen = new HUDScreen(screenContainer);
 					}
@@ -87,9 +95,32 @@ class UIManager extends Object {
 		}, 200);
 	}
 
+	public function showBrief() {
+		hideBrief();
+		if (briefComp == null) {
+			briefComp = new BriefComp(inGameContainer);
+			briefComp.addMessage({img: Res.img.textBlobHeroLeft.toTile(), text: "What the...?\nIm surrounded!\nthird textline", isLeft:true});
+			briefComp.addMessage({img: Res.img.textBlobHeroRight.toTile(), text: "Ho.. ho.. ho..!\nIm superman!", isLeft:false});
+			briefComp.start();
+			// briefComp.addMessage("What the...1?\nIm surrounded!");
+			// briefComp.addMessage("Ho.. ho.. ho..!\nIm superman!");
+		}
+	}
+
+	public function hideBrief() {
+		if (briefComp != null) {
+			briefComp.remove();
+			briefComp.dispose();
+			briefComp = null;
+		}
+	}
+
 	public function update(dt:Float) {
 		if (transitionView != null)
 			transitionView.update(dt);
+
+		if (briefComp != null && !Game.controller.isPause)
+			briefComp.update(dt);
 	}
 
 	public function dispose() {
@@ -101,5 +132,7 @@ class UIManager extends Object {
 			creditsScreen.dispose();
 		if (hudScreen != null)
 			hudScreen.dispose();
+		if (briefComp != null)
+			briefComp.dispose();
 	}
 }

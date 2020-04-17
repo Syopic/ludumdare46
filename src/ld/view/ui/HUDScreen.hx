@@ -42,7 +42,7 @@ class HUDScreen extends h2d.Object {
 		scoreTF = new Text(Res.font.gb.toFont());
 		
 		
-		scoreTF.color = new Vector(139 / 255, 149 / 255, 109 / 255, 1);
+		scoreTF.textColor = Globals.COLOR_SET.Como;
 		scoreTF.textAlign = Left;
 		scoreTF.setPosition(20, 8);
 		this.addChild(scoreTF);
@@ -69,6 +69,9 @@ class HUDScreen extends h2d.Object {
 	function onEvent(event:hxd.Event) {
 		// keyboard
 		if (event.kind == EKeyDown) {
+			if (event.keyCode != Key.ESCAPE && !Game.controller.isPause && Game.uiManager.briefComp != null) {
+				Game.uiManager.briefComp.next();
+			}
 			switch (event.keyCode) {
 				case Key.DOWN:
 					{

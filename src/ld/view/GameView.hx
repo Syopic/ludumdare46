@@ -44,7 +44,6 @@ class GameView extends Object {
 		// fireUnit.position = new Point(40, 40);
 		// units.push(fireUnit);
 
-
 		interaction = new Interactive(Globals.STAGE_WIDTH, Globals.STAGE_HEIGHT, this);
 		interaction.propagateEvents = true;
 		interaction.onMove = function(event:hxd.Event) {
