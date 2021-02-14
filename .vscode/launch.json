@@ -8,9 +8,9 @@
             "name": "HashLink",
             "request": "launch",
             "type": "hl",
-            "hxml": "compile_hl.hxml",
+            "preLaunchTask": "HeapsHL",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "HeapsHL"
+            "args": ["compile_hl.hxml"]
         },
         {
             "name": "JS",

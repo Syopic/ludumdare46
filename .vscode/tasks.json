@@ -6,10 +6,15 @@
 			"type": "hxml",
 			"file": "compile_js.hxml"
 		},
+
 		{
 			"label": "HeapsHL",
 			"type": "hxml",
-			"file": "compile_hl.hxml"
+			"file": "compile_hl.hxml",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

@@ -23,3 +23,4 @@ class LevelselectviewComp extends h2d.Flow implements h2d.domkit.Object {
 	public dynamic function onPlay() {
 		Game.uiManager.changeScreen(Globals.HUD_SCREEN);
 	}
+}
